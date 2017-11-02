@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MyProjects-serviceregistry.iml" filepath="$PROJECT_DIR$/.idea/modules/MyProjects-serviceregistry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MyProjects-serviceregistry_main.iml" filepath="$PROJECT_DIR$/.idea/modules/MyProjects-serviceregistry_main.iml" group="serviceregistry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MyProjects-serviceregistry_test.iml" filepath="$PROJECT_DIR$/.idea/modules/MyProjects-serviceregistry_test.iml" group="serviceregistry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/configclient.iml" filepath="$PROJECT_DIR$/.idea/modules/configclient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/configclient_main.iml" filepath="$PROJECT_DIR$/.idea/modules/configclient_main.iml" group="configclient" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/configclient_test.iml" filepath="$PROJECT_DIR$/.idea/modules/configclient_test.iml" group="configclient" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/configserver.iml" filepath="$PROJECT_DIR$/.idea/modules/configserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/configserver-serviceregistry.iml" filepath="$PROJECT_DIR$/.idea/modules/configserver-serviceregistry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/configserver_main.iml" filepath="$PROJECT_DIR$/.idea/modules/configserver_main.iml" group="configserver" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/configserver_test.iml" filepath="$PROJECT_DIR$/.idea/modules/configserver_test.iml" group="configserver" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gateway.iml" filepath="$PROJECT_DIR$/.idea/modules/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gateway_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gateway_main.iml" group="gateway" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gateway_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gateway_test.iml" group="gateway" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/serviceregistry.iml" filepath="$PROJECT_DIR$/.idea/modules/serviceregistry.iml" group="serviceregistry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/serviceregistry_main.iml" filepath="$PROJECT_DIR$/.idea/modules/serviceregistry_main.iml" group="serviceregistry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/serviceregistry_test.iml" filepath="$PROJECT_DIR$/.idea/modules/serviceregistry_test.iml" group="serviceregistry" />
+    </modules>
+  </component>
+</project>

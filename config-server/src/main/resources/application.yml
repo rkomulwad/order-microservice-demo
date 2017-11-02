@@ -1,0 +1,15 @@
+server:
+  port: 5001
+
+management:
+  security:
+    enabled: false
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///${user.home}/sample-config-repo
+
+

@@ -1,0 +1,8 @@
+
+group 'sample.serviceregistry'
+version '1.0'
+
+dependencies {
+    compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
+    compile('org.springframework.boot:spring-boot-starter-web')
+}

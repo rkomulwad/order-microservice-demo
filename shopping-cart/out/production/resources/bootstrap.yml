@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: shoppingcart
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5000/eureka
+  instance:
+      preferIpAddress: true
+      #leaseRenewalIntervalInSeconds: 1
+      #leaseExpirationDurationInSeconds: 2

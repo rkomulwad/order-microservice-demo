@@ -1,0 +1,8 @@
+rootProject.name = 'order-microservice-demo'
+
+include 'service-registry'
+include 'config-server'
+include 'shopping-cart'
+include 'customer'
+include 'parcel-delivery'
+include 'gateway'

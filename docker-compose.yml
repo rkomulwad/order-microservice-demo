@@ -1,0 +1,32 @@
+service-registry:
+  image: service-registry:1.0
+  ports:
+   - "5000:5000"
+config-server:
+  image: config-server:1.0
+  ports:
+   - "5001:5001"
+  links:
+   - service-registry
+gateway:
+  image: gateway:1.0
+  ports:
+   - "9000:9000"
+  links:
+   - service-registry
+   - config-server
+customer:
+  image: customer:1.0
+  links:
+   - service-registry
+   - config-server
+shopping-cart:
+  image: shopping-cart:1.0
+  links:
+   - service-registry
+   - config-server
+parcel-delivery:
+  image: parcel-delivery:1.0
+  links:
+   - service-registry
+   - config-server

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: parceldelivery
+  cloud:
+    config:
+      uri: http://localhost:5001
