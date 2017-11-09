@@ -1,32 +1,55 @@
-service-registry:
-  image: service-registry:1.0
-  ports:
-   - "5000:5000"
-config-server:
-  image: config-server:1.0
-  ports:
-   - "5001:5001"
-  links:
-   - service-registry
-gateway:
-  image: gateway:1.0
-  ports:
-   - "9000:9000"
-  links:
-   - service-registry
-   - config-server
-customer:
-  image: customer:1.0
-  links:
-   - service-registry
-   - config-server
-shopping-cart:
-  image: shopping-cart:1.0
-  links:
-   - service-registry
-   - config-server
-parcel-delivery:
-  image: parcel-delivery:1.0
-  links:
-   - service-registry
-   - config-server
+version: "3.1"
+services:
+  service-registry:
+    build:
+      context: ./service-registry
+    image: service-registry:1.0
+    ports:
+     - "5000:5000"
+  config-server:
+    build:
+      context: ./config-server
+    image: config-server:1.0
+    ports:
+     - "5001:5001"
+    links:
+     - service-registry
+  gateway:
+    build:
+      context: ./gateway
+    image: gateway:1.0
+    ports:
+     - "9000:9000"
+    links:
+     - service-registry
+     - config-server
+  customer:
+    build:
+      context: ./customer
+    image: customer:1.0
+    links:
+     - service-registry
+     - config-server
+  shopping-cart:
+    build:
+      context: ./shopping-cart
+    image: shopping-cart:1.0
+    links:
+     - service-registry
+     - config-server
+  parcel-delivery:
+    build:
+      context: ./parcel-delivery
+    image: parcel-delivery:1.0
+    ports:
+     - "9042:9042"
+    links:
+     - service-registry
+     - config-server
+  cassandra:
+      image: 'bitnami/cassandra:latest'
+      ports:
+        - '7000:7000'
+        - '7001:7001'
+        - '9042:9042'
+        - '9160:9160'

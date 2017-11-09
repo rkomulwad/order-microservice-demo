@@ -5,13 +5,11 @@ management:
   security:
     enabled: false
 
-spring:
-  cloud:
-    config:
-      url: http://localhost:5001
-  data:
-    cassandra:
-      keyspace-name: package_delivery_kepspace
-      contact-points: localhost
-      port: 9042
-      schema-action: CREATE_IF_NOT_EXISTS
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5000/eureka
+  instance:
+      preferIpAddress: true
+      #leaseRenewalIntervalInSeconds: 1
+      #leaseExpirationDurationInSeconds: 2

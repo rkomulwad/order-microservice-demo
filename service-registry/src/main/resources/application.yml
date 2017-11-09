@@ -1,9 +1,25 @@
 server:
   port: 5000
 
+---
+
+spring:
+  profiles: dev
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     serviceUrl:
           defaultZone: http://localhost:5000/eureka
+
+---
+
+spring:
+  profiles: docker
+eureka:
+    client:
+      register-with-eureka: false
+      fetch-registry: false
+      serviceUrl:
+            defaultZone: http://service-registry:5000/eureka
+

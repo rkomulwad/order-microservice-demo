@@ -2,10 +2,25 @@ spring:
   application:
     name: configserver
 
+---
+
+spring:
+  profiles: dev
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:5000/eureka
+  instance:
+      preferIpAddress: true
+
+---
+
+spring:
+  profiles: docker
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://service-registry:5000/eureka
   instance:
       preferIpAddress: true
       #leaseRenewalIntervalInSeconds: 1
