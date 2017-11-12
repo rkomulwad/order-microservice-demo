@@ -1,61 +1,62 @@
 version: "3.1"
 services:
-#  service-registry:
-#    build:
-#      context: ./service-registry
-#    image: service-registry:1.0
-#    container_name: service-registry
-#    ports:
-#     - "5000:5000"
-#  config-server:
-#    build:
-#      context: ./config-server
-#    image: config-server:1.0
-#    container_name: config-server
-#    ports:
-#     - "5001:5001"
-#    links:
-#     - service-registry
-#    #entrypoint: ["./wait-for-it.sh","service-registry:5001","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-#  gateway:
-#    build:
-#      context: ./gateway
-#    image: gateway:1.0
-#    container_name: gateway
-#    ports:
-#     - "9000:9000"
-#    links:
-#     - service-registry
-#     - config-server
-#    #entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-#  customer:
-#    build:
-#      context: ./customer
-#    image: customer:1.0
-#    container_name: customer
-#    links:
-#     - service-registry
-#     - config-server
-#    #entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-#  shopping-cart:
-#    build:
-#      context: ./shopping-cart
-#    image: shopping-cart:1.0
-#    container_name: shopping-cart
-#    links:
-#     - service-registry
-#     - config-server
-#    #entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-#  parcel-delivery:
-#    build:
-#      context: ./parcel-delivery
-#    image: parcel-delivery:1.0
-#    container_name: parcel-delivery
-#    links:
-#     - service-registry
-#     - config-server
-#     - cassandra
-#    #entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+  service-registry:
+    build:
+      context: ./service-registry
+    image: service-registry:1.0
+    container_name: service-registry
+    ports:
+     - "5000:5000"
+    entrypoint: ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+  config-server:
+    build:
+      context: ./config-server
+    image: config-server:1.0
+    container_name: config-server
+    ports:
+     - "5001:5001"
+    links:
+     - service-registry
+    entrypoint: ["./wait-for-it.sh","service-registry:5000","--timeout=10","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+  gateway:
+    build:
+      context: ./gateway
+    image: gateway:1.0
+    container_name: gateway
+    ports:
+     - "9000:9000"
+    links:
+     - service-registry
+     - config-server
+    entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=20","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+  customer:
+    build:
+      context: ./customer
+    image: customer:1.0
+    container_name: customer
+    links:
+     - service-registry
+     - config-server
+    entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=20","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+  shopping-cart:
+    build:
+      context: ./shopping-cart
+    image: shopping-cart:1.0
+    container_name: shopping-cart
+    links:
+     - service-registry
+     - config-server
+    entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=20","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+  parcel-delivery:
+    build:
+      context: ./parcel-delivery
+    image: parcel-delivery:1.0
+    container_name: parcel-delivery
+    links:
+     - service-registry
+     - config-server
+     - cassandra
+    entrypoint: ["./wait-for-it.sh","cassandra:9042","--timeout=90","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
   cassandra:
     image: cassandra:latest
     container_name: cassandra
@@ -65,10 +66,11 @@ services:
       - "9160:9160"
       - "9042:9042"
       - "7199:7199"
-
   setup-cassandra:
     build:
       context: ./cassandra
+    image: cassandra_keyspace_setup:latest
+    container_name: cassandra_keyspace_setup
     links:
       - cassandra
-    command: bash -c "sleep 60 && echo Creating keyspace test && cqlsh cassandra -f init.cql"
+    command: bash -c "./wait-for-it.sh --timeout=90 cassandra:9042 && echo Creating keyspace test && cqlsh cassandra -f init.cql"

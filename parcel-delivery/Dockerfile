@@ -1,9 +1,9 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8
 VOLUME /tmp
 ADD build/libs/parcel-delivery-1.0.jar app.jar
 
-#ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh wait-for-it.sh
-#RUN sh -c 'chmod +x wait-for-it.sh'
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh wait-for-it.sh
+RUN sh -c 'chmod +x wait-for-it.sh'
 
 RUN sh -c 'touch /app.jar'
 
@@ -12,4 +12,4 @@ ENV SPRING_PROFILES_ACTIVE docker
 
 EXPOSE :8002
 
-ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Dspring.active.profiles=docker -jar /app.jar
+#ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Dspring.active.profiles=docker -jar /app.jar
