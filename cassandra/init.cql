@@ -1,0 +1,1 @@
+CREATE KEYSPACE package_delivery_keyspace WITH REPLICATION = { 'class' : 'SimpleStrategy' , 'replication_factor' : 1 };
