@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestScope
-@RequestMapping("/api/{version}/status")
+@RequestMapping("/status")
 public class OrderDeliveryStatusController {
 
     @Autowired

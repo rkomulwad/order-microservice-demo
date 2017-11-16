@@ -18,22 +18,13 @@ services:
     links:
      - service-registry
     entrypoint: ["./wait-for-it.sh","service-registry:5000","--timeout=10","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-  gateway:
-    build:
-      context: ./gateway
-    image: gateway:1.0
-    container_name: gateway
-    ports:
-     - "9000:9000"
-    links:
-     - service-registry
-     - config-server
-    entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=20","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
   customer:
     build:
       context: ./customer
     image: customer:1.0
     container_name: customer
+#    ports:
+#         - "8000:8000"
     links:
      - service-registry
      - config-server
@@ -74,3 +65,28 @@ services:
     links:
       - cassandra
     command: bash -c "./wait-for-it.sh --timeout=90 cassandra:9042 && echo Creating keyspace test && cqlsh cassandra -f init.cql"
+  gateway:
+      build:
+        context: ./gateway
+      image: gateway:1.0
+      container_name: gateway
+      ports:
+       - "9000:9000"
+      links:
+       - service-registry
+       - config-server
+      entrypoint: ["./wait-for-it.sh","config-server:5001","--timeout=20","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+  validate:
+      build:
+        context: ./validate
+      image: validate:1.0
+      container_name: validate
+      ports:
+        - "8003:8003"
+      links:
+       - service-registry
+       - config-server
+       - customer
+       - shopping-cart
+       - parcel-delivery
+      entrypoint: ["./wait-for-it.sh","customer:8000","--timeout=20","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]

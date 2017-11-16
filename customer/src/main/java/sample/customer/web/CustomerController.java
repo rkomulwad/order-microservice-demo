@@ -12,20 +12,19 @@ import java.util.List;
 
 @RestController
 @RefreshScope
-@RequestMapping("/api/{version}/customer")
 public class CustomerController {
     @Autowired
     CustomerOrderService service;
 
     @RequestMapping(value = "/{memberId}", method = RequestMethod.POST)
-    public ResponseEntity<HttpStatus> saveOrder(@RequestBody Order order, @PathVariable Long memberId){
+    public ResponseEntity<Order> saveOrder(@RequestBody Order order, @PathVariable Long memberId){
         order.setCustomerId(memberId);
         service.processOrder(order);
-        return ResponseEntity.ok(HttpStatus.CREATED);
+        return ResponseEntity.ok(order);
     }
 
     @RequestMapping(value = "/{memberId}", method = RequestMethod.GET)
-    public ResponseEntity<List<Order>> readOrder(@PathVariable Long memberId){
+    public ResponseEntity<List<Order>> readOrder(@PathVariable("memberId") Long memberId){
         return ResponseEntity.ok(service.readOrderByCustomerId(memberId));
     }
 }

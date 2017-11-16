@@ -8,8 +8,6 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath('io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE')
-
-        //classpath "se.transmode.gradle:gradle-docker:1.2"
     }
 }
 
@@ -20,18 +18,9 @@ subprojects {
     // Apply the java plugin to add support for Java
     apply plugin: 'java'
     apply plugin: 'idea'
+
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-
-    /*
-    apply plugin: 'application'
-    apply plugin: 'docker'
-    */
-    sourceCompatibility = 1.8
-
-    repositories {
-        mavenCentral()
-    }
 
     dependencyManagement {
         imports {
@@ -39,12 +28,14 @@ subprojects {
         }
     }
 
-    /*
-    distDocker{
-        //def dockerfile = file('./Dockerfile')
-        //setDockerfile(dockerfile)
-        baseImage="openjdk:8-jdk-alpine"
+    dependencies {
+        compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
     }
-    */
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
 }
 

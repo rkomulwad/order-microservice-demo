@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RefreshScope
-@RequestMapping("/api/{version}/cart/")
 public class CartController {
 
     @Autowired

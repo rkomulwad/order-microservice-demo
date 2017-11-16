@@ -1,0 +1,35 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: validate
+
+---
+
+spring:
+  profiles: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5000/eureka
+  instance:
+      preferIpAddress: true
+logging:
+  level:
+    com.sample.verify.customer.CustomerServiceClient: DEBUG
+---
+
+spring:
+  profiles: docker
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://service-registry:5000/eureka
+  instance:
+      preferIpAddress: true
+      #leaseRenewalIntervalInSeconds: 1
+      #leaseExpirationDurationInSeconds: 2
+logging:
+  level:
+    com.sample.verify.customer.CustomerServiceClient: DEBUG
