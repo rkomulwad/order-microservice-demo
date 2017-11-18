@@ -20,13 +20,13 @@ public class CartController {
     OrderService service;
 
     @RequestMapping(value = "/{memberId}", method = RequestMethod.POST)
-    public ResponseEntity<HttpStatus> saveOrder(@RequestBody Order order){
-        service.processOrder(order);
-        return ResponseEntity.ok(HttpStatus.CREATED);
+    public ResponseEntity<Order> saveOrder(@RequestBody Order order){
+        order = service.processOrder(order);
+        return ResponseEntity.ok(order);
     }
 
     @RequestMapping(value = "/{memberId}", method = RequestMethod.GET)
-    public ResponseEntity<List<Order>> readOrder(@PathVariable Long memberId){
+    public ResponseEntity<List<Order>> readOrder(@PathVariable("memberId") Long memberId){
         return ResponseEntity.ok(service.readOrderByCustomerId(memberId));
     }
 }

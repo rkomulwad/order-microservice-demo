@@ -15,9 +15,9 @@ public class OrderServiceImpl implements OrderService{
     OrderRepository orderRepository;
 
     @Override
-    public void processOrder(Order order) {
+    public Order processOrder(Order order) {
         order.setOrderDateTime(ZonedDateTime.now());
-        orderRepository.save(order);
+        return orderRepository.save(order);
     }
 
     public List<Order> readOrderByCustomerId(Long customerId){

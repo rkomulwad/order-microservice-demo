@@ -11,16 +11,15 @@ import java.util.List;
 
 @RestController
 @RequestScope
-@RequestMapping("/status")
 public class OrderDeliveryStatusController {
 
     @Autowired
     OrderDeliveryStatusService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<HttpStatus> saveOrder(@RequestBody OrderDeliveryStatusUpdate status){
+    public ResponseEntity<OrderDeliveryStatusUpdate> saveOrder(@RequestBody OrderDeliveryStatusUpdate status){
         service.processStatus(status);
-        return ResponseEntity.ok(HttpStatus.CREATED);
+        return ResponseEntity.ok(status);
     }
 
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)

@@ -18,6 +18,9 @@ eureka:
 logging:
   level:
     com.sample.verify.customer.CustomerServiceClient: DEBUG
+    com.sample.verify.shoppingcart.ShoppingCartClient: DEBUG
+    com.sample.verify.parceldelivery.ParcelDeliveryClient: DEBUG
+
 ---
 
 spring:
@@ -33,3 +36,5 @@ eureka:
 logging:
   level:
     com.sample.verify.customer.CustomerServiceClient: DEBUG
+    com.sample.verify.shoppingcart.ShoppingCartClient: DEBUG
+    com.sample.verify.parceldelivery.ParcelDeliveryClient: DEBUG

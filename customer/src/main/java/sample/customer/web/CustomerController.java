@@ -19,7 +19,7 @@ public class CustomerController {
     @RequestMapping(value = "/{memberId}", method = RequestMethod.POST)
     public ResponseEntity<Order> saveOrder(@RequestBody Order order, @PathVariable Long memberId){
         order.setCustomerId(memberId);
-        service.processOrder(order);
+        order = service.processOrder(order);
         return ResponseEntity.ok(order);
     }
 
